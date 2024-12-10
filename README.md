@@ -7,7 +7,7 @@ After getting Raspberry Pi OS (Legacy, 64-bit) Lite image (with ssh enabled and 
 
 2) logged into Pi from a terminal on my Mac:
 
-    ```ssh rpi21gb@192.168.1.66```
+    ```ssh rpi3b1gb@192.168.1.66```
 
 3) updated packages. (the following update / upgrade / autoremove can be run later also when the system needs to be updated with the latest Docker packages and/or other packages)
 
