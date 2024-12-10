@@ -68,7 +68,7 @@ After getting Raspberry Pi OS (Legacy, 64-bit) Lite image (with ssh enabled and 
     sudo docker pull portainer/portainer-ce:linux-arm
     sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:linux-arm
     ```
-10) With [docker-compose.yaml](docker-compose.yaml) loaded as stack in Portainer and environment variables from [rpi3b1gb.env](rpi3b1gb.env), I now have this running on my Pi:
+10) With [docker-compose.yaml](docker-compose.yaml) loaded as stack in Portainer (at 192.168.1.66:9000) with environment variables from [rpi3b1gb.env](rpi3b1gb.env), I now have this running on my Pi:
 
     ![containers in portainer](images/screenshots/portainer_3.png)
 
