@@ -1,0 +1,65 @@
+services:
+  adguardhome:
+    container_name: adguardhome
+    hostname: adguardhome
+    image: adguard/adguardhome:latest
+    restart: unless-stopped
+    network_mode: "host"
+    ports:
+      # uncomment ports below if you're going to use them
+      # more info about ports: https://github.com/AdguardTeam/AdGuardHome/wiki/Docker
+      - 53:53/tcp		# for DNS
+      - 53:53/udp		# for DNS (needed for local AGH? not sure)
+      - 67:67/udp # for DHCP server
+      #- 443:443/tcp
+      #- 443:443/udp
+      #- 784:784/udp
+      - 853:853/tcp # for DNS over TLS
+      - 853:853/udp # for DNS over QUIC
+      #- 5443:5443/tcp
+      #- 5443:5443/udp
+      #- 8853:8853/udp
+      - 3000:3000/tcp		# adguard initial config
+      - 3001:3001/tcp		# adguard admin interface
+    environment:
+      TZ: 'America/Los_Angeles'
+    volumes:
+      - ${LOCAL_VOLUME}/${USER}/${ADGUARD_HOME}/work:/opt/adguardhome/work
+      - ${LOCAL_VOLUME}/${USER}/${ADGUARD_HOME}/conf:/opt/adguardhome/conf
+
+  webserver:
+    container_name: static_content_server
+    hostname: nginx
+    image: nginx
+    restart: unless-stopped
+    network_mode: "host"
+    ports:
+      - 80:80
+    environment:
+      - TZ='America/Los_Angeles'
+    volumes:
+      - ${LOCAL_VOLUME}/${USER}/${WEB}/conf:/etc/nginx/conf.d
+      - ${LOCAL_VOLUME}/${USER}/${WEB}/pages:/var/www/html
+      - ${LOCAL_VOLUME}/${USER}/${WEB}/logs:/var/log/nginx
+
+  jellyfin:
+    container_name: jellyfin_musicserver
+    hostname: jellyfin
+    image: jellyfin/jellyfin
+    restart: unless-stopped
+    network_mode: "host"
+    ports:
+      - 8096:8096
+      - 8920:8920 #optional
+      # - 7359:7359/udp #optional
+      # - 1900:1900/udp #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ='America/Los_Angeles'
+    volumes:
+      - ${LOCAL_VOLUME}/${USER}/${JELLYFIN}/config:/config
+      - ${LOCAL_VOLUME}/${USER}/${JELLYFIN}/tv:/data/tvshows
+      - ${LOCAL_VOLUME}/${USER}/${JELLYFIN}/movies:/data/movies
+      - ${LOCAL_VOLUME}/${USER}/${JELLYFIN}/videos:/data/videos
+      - /mnt/usb128gb/music:/data/music
