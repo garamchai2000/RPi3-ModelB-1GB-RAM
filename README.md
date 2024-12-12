@@ -79,6 +79,10 @@ After getting Raspberry Pi OS (Legacy, 64-bit) Lite image (with ssh enabled and 
 12) One can't trust all open source software. Never hurts to have some antivirus software (from a reputable company like Cisco, no less!) run periodiclaly looking for trojans, viruses, malware & other malicious threats.
     ```
     sudo apt-get install clamav
+    sudo systemctl stop clamav-freshclam
+    sudo freshclam
+    sudo systemctl start clamav-freshclam
+    sudo systemctl enable clamav-freshclam
     #exclude multiple directories repeating --exclude flag as many times as there are directories to be excluded
     sudo clamscan --log=/tmp/clamscan.log --exclude=/mnt/usb128gb --suppress-ok-results --infected --recursive  / > /dev/null 2>&1 &
     ```
