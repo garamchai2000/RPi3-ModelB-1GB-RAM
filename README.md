@@ -23,7 +23,7 @@ After getting Raspberry Pi OS (Legacy, 64-bit) Lite image (with ssh enabled and 
     sudo nmtui edit “Wired connection 1” # Pi / Gateway / Router IP Address are set here
     sudo shutdown -r now
     ```
-    ![edits in nmtui](images/screenshots/nmtui.jpg)
+    ![edits in nmtui](https://github.com/garamchai2000/RPi2-ModelB-1GB-RAM/blob/main/images/screenshots/nmtui.jpg)
    
 6) Mounted a USB drive (which till now I had on my OpenWRT router and accessible on home network through Samba) with FLAC files of my (approximately 250) audio CD collection:
     ```
