@@ -70,7 +70,7 @@ After getting Raspberry Pi OS (Legacy, 64-bit) Lite image (with ssh enabled and 
     ```
 10) With [docker-compose.yaml](docker-compose.yaml) loaded as stack in Portainer (at 192.168.1.66:9000) with environment variables from [rpi3b1gb.env](rpi3b1gb.env), I now have this running on my Pi:
 
-    ![containers in portainer](images/screenshots/portainer_3.png)
+    ![containers in portainer](https://github.com/garamchai2000/RPi2-ModelB-1GB-RAM/blob/main/images/screenshots/portainer_3.png)
 
 11) Portainer can be upgraded later when there is a newer version:
     ```
