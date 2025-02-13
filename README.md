@@ -12,7 +12,7 @@ After getting Raspberry Pi OS (Legacy, 64-bit) Lite image (with ssh enabled and 
 3) updated packages. (the following update / upgrade / autoremove can be run later also when the system needs to be updated with the latest Docker packages and/or other packages)
 
     ```
-    sudo apt update && sudo apt upgrade -y && sudo apt autoremove
+    sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
     ```
 
 4) set the IP address (from step 1) above) as static IP address on Pi:
@@ -21,7 +21,7 @@ After getting Raspberry Pi OS (Legacy, 64-bit) Lite image (with ssh enabled and 
     sudo systemctl start NetworkManager
     nmcli device show eth0
     sudo nmtui edit “Wired connection 1” # Pi / Gateway / Router IP Address are set here
-    sudo shutdown -h reboot # if that doesn't work, try: sudo shutdown -r now
+    sudo shutdown -r now
     ```
     ![edits in nmtui](images/screenshots/nmtui.jpg)
    
