@@ -76,21 +76,3 @@ After getting Raspberry Pi OS (Legacy, 64-bit) Lite image (with ssh enabled and 
     ```
     sudo docker stop portainer && sudo docker rm portainer && sudo docker pull portainer/portainer-ce:linux-arm && sudo docker run -d -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:linux-arm
     ```
-12) One can't trust all open source software. Never hurts to have some antivirus software (from a reputable company like Cisco, no less!) run periodiclaly looking for trojans, viruses, malware & other malicious threats.
-    ```
-    sudo apt-get install clamav
-    sudo systemctl stop clamav-freshclam
-    sudo freshclam
-    sudo systemctl start clamav-freshclam
-    sudo systemctl enable clamav-freshclam
-    #exclude multiple directories repeating --exclude flag as many times as there are directories to be excluded
-    sudo clamscan --log=/tmp/clamscan.log --exclude=/mnt/usb128gb --suppress-ok-results --infected --recursive  / > /dev/null 2>&1 &
-    ```
-    Takes some time for scan to complete. Check the log file, /tmp/clamscan.log, later.
-    
-13) Add the following to root's crontab to run the above periodically.
-    ```
-    # update virus definition files and then scan for viruses
-    # at midnight, on first day of every month
-    0 0 1 * *   rm -f /tmp/clamscan.log; /usr/bin/freshclam > /dev/null 2>&1; /usr/bin/clamscan --log=/tmp/clamscan.log --exclude=/mnt/usb128gb --suppress-ok-results --infected --recursive / > /dev/null 2>&1
-    ```    
